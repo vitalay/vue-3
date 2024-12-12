@@ -5,23 +5,35 @@
 <h1>Счетчик: {{ count }} </h1>
 <button class="btn btn-primary" @click="count++" >Прибавить</button>
 <button class="btn btn-danger" @click="count--">Убавить</button>
-</div>
+
 <hr />
 
 <input type="text" 
 :placeholder="clue"
  v-model="inputValue"
  v-on:keypress.enter="addNewNote"
-  />
-<p>Введенное значение: {{ inputValue }}</p>
+ />
+ <div>
+   <p>Введенное значение: {{ inputValue }}</p>
+   <div v-if="notes.length === 1">
+    сейчас одна заметка
+    <ul class="list-group">
+     <li class="list-group-item" v-for="(note, index) in notes" :key="index" >{{ note }}
+       <br />
+       <button class="btn btn-danger" v-on:click="deleteNote(index)">Удалить</button>
+      </li>
+    </ul>
+    </div>
+   <ul class="list-group" v-else-if="notes.length !== 0">
+     <li class="list-group-item" v-for="(note, index) in notes" :key="index" >{{ note }}
+       <br />
+       <button class="btn btn-danger" v-on:click="deleteNote(index)">Удалить</button>
+      </li>
+    </ul>
+    <div v-else>Заметок нет</div>
 
-<ul class="list-group" v-if="notes.length !== 0">
-  <li class="list-group-item" v-for="(note, index) in notes" :key="index" >{{ note }}
-  <br />
-  <button class="btn btn-danger" v-on:click="deleteNote(index)">Удалить</button>
-</li>
-</ul>
-
+  </div>
+  </div>
 </template>
 
 <script>
