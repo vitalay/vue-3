@@ -13,8 +13,10 @@
  v-model="inputValue"
  v-on:keypress.enter="addNewNote"
  />
- <div>
+ <div> 
    <p>Введенное значение: {{ inputValue }}</p>
+      <div>Всего заметок: {{ notes.length }}</div>
+
    <div v-if="notes.length === 1">
     сейчас одна заметка
     <ul class="list-group">
@@ -31,6 +33,8 @@
       </li>
     </ul>
     <div v-else>Заметок нет</div>
+    <div> {{ calculatesNotes }}</div>
+   
 
   </div>
   </div>
@@ -62,6 +66,12 @@ export default {
       }
       
     },
+    computed: {
+      calculatesNotes () {
+        console.log('calculatesNotes', this.notes.length * 5);
+        return this.notes.length * 5;
+      }
+    }
     };
 
 </script>
