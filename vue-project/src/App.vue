@@ -14,12 +14,22 @@
       :isOpen="note.isOpen"
       @countTaskOpen="note.wasTaskRead++"
     />
+
+    <app-slots>
+    
+      <template v-slot="slotProps">
+        <p>{{ slotProps.i }}: {{ slotProps.item }}</p>
+      
+      </template>
+      
+  
+    </app-slots>
   </div>
 </template>
 
 <script>
 import MyNotes from "./MyNotes.vue"; // Убедись, что этот компонент существует и находится в правильном пути
-
+import AppSlots from "./AppSlots.vue";
 export default {
   data() {
     return {
@@ -50,6 +60,7 @@ export default {
   },
   components: {
     MyNotes,
+    AppSlots
   },
 };
 </script>
