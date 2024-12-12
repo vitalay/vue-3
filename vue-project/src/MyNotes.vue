@@ -1,7 +1,11 @@
 <template>
   <div>
-    <h2>Заметка: №{{ id }} {{ task }} {{ time }}</h2>
-    <strong>Прочитано</strong>
+    <h2 v-if="isTaskOpen"
+    v-bind:class="wasTaskRead < 2 ? 'bg-success' : 'bg-danger'"
+    >Задание: №{{ id }} {{ task }} </h2>
+    <p>{{ time }}</p>
+    <button class="btn btn-success" v-on:click="openTask"> Задание прочитано </button>
+    <strong>Прочитано: {{ wasTaskRead }}</strong>
   </div>
 </template>
 
@@ -12,11 +16,7 @@ export default {
       type: String,
       required: true,
       default: "Отсутствует заметка",
-      validator(value) {
-        if (typeof value === "string") {
-          return true;
-        }
-      },
+
     },
 
     time: {
@@ -29,16 +29,30 @@ export default {
       type: Number,
       required: true,
       default: 0,
-      validator(value) {
-        if (typeof value === "number") {
-          return true;
-        }
-      },
+    
     },
+    wasTaskRead : {
+      type: Number,
+    },
+    isOpen: {
+      type: Boolean,
+    },
+
   },
 
   data() {
-    return {};
+    return {
+        isTaskOpen: this.isOpen
+    };
+  },
+
+  methods: {
+    openTask() {
+      this.isTaskOpen = !this.isTaskOpen;
+      if (this.isTaskOpen) {
+        this.$emit("countTaskOpen", this.id);
+      }
+    },
   },
 };
 </script>
