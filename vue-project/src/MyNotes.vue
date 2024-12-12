@@ -1,23 +1,46 @@
 <template>
-<div>
-    
-    <h2>Заметка: {{ oneNote }}</h2>
+  <div>
+    <h2>Заметка: №{{ id }} {{ task }} {{ time }}</h2>
     <strong>Прочитано</strong>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-    props: ['oneNote'],
-    data() {
-        return {
-    };
+  props: {
+    task: {
+      type: String,
+      required: true,
+      default: "Отсутствует заметка",
+      validator(value) {
+        if (typeof value === "string") {
+          return true;
+        }
+      },
     },
 
+    time: {
+      type: String,
+      required: true,
+      default: "Отсутствует время",
+   
+    },
+    id: {
+      type: Number,
+      required: true,
+      default: 0,
+      validator(value) {
+        if (typeof value === "number") {
+          return true;
+        }
+      },
+    },
+  },
 
-}
+  data() {
+    return {};
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
