@@ -5,7 +5,7 @@
     <button class="btn btn-danger" @click="count--">Убавить</button>
 
     <hr />
-
+     <h2 v-bind:class="notes.length >5 ? 'first' : 'second'">Ввод</h2>
     <input
       type="text"
       :placeholder="clue"
@@ -32,8 +32,11 @@
           </li>
         </ul>
       </div>
-      <ul class="list-group" v-else-if="notes.length !== 0">
-        <li class="list-group-item" v-for="(note, index) in notes" :key="index">
+      <ul 
+      v-bind:class="{yellow: true, green: notes.length > 5}"
+      v-else-if="notes.length !== 0"
+      >
+      <li v-bind:class="['list-group-item', 'yellow', {'green': notes.length > 5}]"  v-for="(note, index) in notes" :key="index">
           {{ note }}
           <br />
           <button class="btn btn-danger" v-on:click="deleteNote(index)">
@@ -83,4 +86,21 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.first {
+  background: rgb(30, 255, 0);
+}
+.second {
+  background: rgb(255, 0, 76);
+}
+.yellow {
+  background: rgb(255, 230, 0);
+}
+.green {
+  background: rgb(43, 255, 0);
+}
+
+
+
+
+</style>
