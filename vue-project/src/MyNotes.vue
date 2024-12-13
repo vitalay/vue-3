@@ -6,10 +6,13 @@
     <p>{{ time }}</p>
     <button class="btn btn-success" v-on:click="openTask"> Задание прочитано </button>
     <strong>Прочитано: {{ wasTaskRead }}</strong>
+    <Third />
   </div>
 </template>
 
 <script>
+import Third from './Third.vue'
+
 export default {
   props: {
     task: {
@@ -54,6 +57,9 @@ export default {
       }
     },
   },
+  components: {
+    Third
+  }
 };
 </script>
 

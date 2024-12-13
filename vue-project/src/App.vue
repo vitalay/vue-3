@@ -24,13 +24,18 @@
       
   
     </app-slots>
+
+    <third></third>
   </div>
 </template>
 
 <script>
 import MyNotes from "./MyNotes.vue"; // Убедись, что этот компонент существует и находится в правильном пути
 import AppSlots from "./AppSlots.vue";
+
+
 export default {
+
   data() {
     return {
       notes: [
@@ -60,7 +65,15 @@ export default {
   },
   components: {
     MyNotes,
-    AppSlots
+    AppSlots,
+   
   },
+  provide() {
+    return {
+      info: this.notes
+    }
+   
+  }
+  
 };
 </script>
