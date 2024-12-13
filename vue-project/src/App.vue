@@ -34,6 +34,7 @@ import MyNotes from "./MyNotes.vue"; // Убедись, что этот комп
 import AppSlots from "./AppSlots.vue";
 
 
+
 export default {
 
   data() {
@@ -66,6 +67,7 @@ export default {
   components: {
     MyNotes,
     AppSlots,
+ 
    
   },
   provide() {
